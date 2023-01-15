@@ -1,0 +1,12 @@
+# c++ build
+/build
+
+# latex files
+/**/*.aux
+/**/*.fls
+/**/*.log
+/**/*.pdf
+/**/*.gz
+/**/*.fdb_latexmk
+
+# exceptions for gz archives and pdf files
