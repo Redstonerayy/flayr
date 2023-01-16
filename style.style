@@ -2,3 +2,4 @@
     -lowercase functions
     -lowercase filenames
     -underscore no blank
+    -source before lib header

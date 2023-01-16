@@ -1,5 +1,6 @@
-void hello();
+#include <flayr/flayr.hpp>
 
 int main(){
-    hello();
+    Network* neuralnetwork = new Network();
+    neuralnetwork->addsimplelayer(0, 2, 3);
 }

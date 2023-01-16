@@ -1,24 +1,38 @@
 // inline all of these functions
 // if they don't get inlined (they should, which compiler do you use), then use macros
 
-// step function
-// input > 0 ? 1 : 0;
+#include <cmath>
 
-// sigmoid
-// 1 / (1 + std::exp(input))
+// step function, 1
+inline double step(double input){
+	return input > 0 ? 1 : 0;
+}
 
-// hyperbolic tangent
-// e2w = std::exp(2 * input) 
-// (e2w - 1) / (e2w + 1)
+// sigmoid, 2
+inline double sigmoid(double input){
+	return 1 / (1 + std::exp(input));
+}
 
-// SiLU
-// input / (1 + std::exp(-input))
+// hyperbolic tangent, 3
+inline double htan(double input){
+	double e2w = std::exp(2 * input);
+	return (e2w - 1) / (e2w + 1);
+}
 
-// ReLU
-// std::max(0, input)
+// SiLU, 4
+inline double silu(double input){
+	return input / (1 + std::exp(-input));
+}
 
-// LReLU
-// input > 0 ? input : (0.01 * input)
+// ReLU, 5
+inline double relu(double input){
+	return input > 0 ? input : 0;
+}
+
+// LReLU, 6
+inline double lrelu(double input){
+	return input > 0 ? input : (0.01 * input);
+}
 
 // TODO
 // ELU
