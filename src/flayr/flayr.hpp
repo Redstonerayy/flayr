@@ -2,5 +2,5 @@
 
 // activation funcs
 #include "activation_funcs.hpp"
-#include "layer.hpp"
-#include "network.hpp"
+#include "layer_simple.hpp"
+#include "network_simple.hpp"

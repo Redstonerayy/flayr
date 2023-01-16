@@ -1,6 +1,12 @@
 #include <flayr/flayr.hpp>
+#include <vector>
 
 int main(){
-    Network* neuralnetwork = new Network();
-    neuralnetwork->addsimplelayer(0, 2, 3);
+    NetworkSimple* neuralnetwork = new NetworkSimple();
+
+    neuralnetwork->addlayer(SIGMOID_FUNCTION, 2);
+    neuralnetwork->addlayer(SIGMOID_FUNCTION, 2);
+    neuralnetwork->connectalllayers();
+    std::vector<double> inputs = {0, 0};
+    neuralnetwork->evaluatenetwork(inputs);
 }

@@ -10,3 +10,6 @@
 /**/*.fdb_latexmk
 
 # exceptions for gz archives and pdf files
+
+# vscode
+/.vscode

@@ -1,9 +1,18 @@
 #pragma once
 
+enum {
+	STEP_FUNCTION = 1,
+	SIGMOID_FUNCTION,
+	HTAN_FUNCTION,
+	SILU_FUNCTION,
+	RELU_FUNCTION,
+	LRELU_FUNCTION
+};
+
 // activation funcs
-inline double step(double input);
-inline double sigmoid(double input);
-inline double htan(double input);
-inline double silu(double input);
-inline double relu(double input);
-inline double lrelu(double input);
+double step(double input);
+double sigmoid(double input);
+double htan(double input);
+double silu(double input);
+double relu(double input);
+double lrelu(double input);
