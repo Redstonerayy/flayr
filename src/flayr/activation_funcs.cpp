@@ -11,7 +11,7 @@ double step(double input){
 
 // sigmoid, 2
 double sigmoid(double input){
-	return 1 / (1 + std::exp(input));
+	return 1 / (1 + std::exp(-input));
 }
 
 // hyperbolic tangent, 3

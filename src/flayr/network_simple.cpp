@@ -44,6 +44,9 @@ void NetworkSimple::connectlayers(Layer &layerfrom, Layer &layerto){
 }
 
 void NetworkSimple::calculatelayeroutputs(Layer &layerfrom){
+	for(auto output : layerfrom.inputs){
+		std::cout << output << std::endl;
+	}
 	switch(layerfrom.activationfunc){
 		case 1: this->calculatelayeroutputssigmoid(layerfrom); break;
 		case 2: this->calculatelayeroutputssigmoid(layerfrom); break;
@@ -51,6 +54,9 @@ void NetworkSimple::calculatelayeroutputs(Layer &layerfrom){
 		case 4: this->calculatelayeroutputssigmoid(layerfrom); break;
 		case 5: this->calculatelayeroutputssigmoid(layerfrom); break;
 		case 6: this->calculatelayeroutputssigmoid(layerfrom); break;
+	}
+	for(auto output : layerfrom.outputs){
+		std::cout << output << std::endl;
 	}
 }
 
