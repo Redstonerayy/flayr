@@ -1,6 +1,6 @@
 #pragma once
 
-enum {
+enum ACTIVATIONS_FUNCTIONS {
 	STEP_FUNCTION = 1,
 	SIGMOID_FUNCTION,
 	HTAN_FUNCTION,

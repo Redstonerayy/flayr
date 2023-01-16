@@ -2,12 +2,6 @@
 
 #include <vector>
 
-enum {
-	INPUT_LAYER = 0,
-	HIDDEN_LAYER,
-	OUTPUT_LAYER
-};
-
 struct Layer {
 	int layerindex;
 	std::vector<double> inputs; // store input

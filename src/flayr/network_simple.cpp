@@ -48,12 +48,12 @@ void NetworkSimple::calculatelayeroutputs(Layer &layerfrom){
 		std::cout << output << std::endl;
 	}
 	switch(layerfrom.activationfunc){
-		case 1: this->calculatelayeroutputssigmoid(layerfrom); break;
+		case 1: this->calculatelayeroutputsstep(layerfrom); break;
 		case 2: this->calculatelayeroutputssigmoid(layerfrom); break;
-		case 3: this->calculatelayeroutputssigmoid(layerfrom); break;
-		case 4: this->calculatelayeroutputssigmoid(layerfrom); break;
-		case 5: this->calculatelayeroutputssigmoid(layerfrom); break;
-		case 6: this->calculatelayeroutputssigmoid(layerfrom); break;
+		case 3: this->calculatelayeroutputshtan(layerfrom); break;
+		case 4: this->calculatelayeroutputssilu(layerfrom); break;
+		case 5: this->calculatelayeroutputsrelu(layerfrom); break;
+		case 6: this->calculatelayeroutputslrelu(layerfrom); break;
 	}
 	for(auto output : layerfrom.outputs){
 		std::cout << output << std::endl;
@@ -62,8 +62,7 @@ void NetworkSimple::calculatelayeroutputs(Layer &layerfrom){
 
 void NetworkSimple::calculatelayeroutputsstep(Layer &layerfrom){
 	for(int i = 0; i < layerfrom.inputs.size(); ++i){
-		// layerfrom.outputs.emplace_back(step(layerfrom.inputs.at(i)));
-		layerfrom.outputs.at(i) = step(layerfrom.inputs.at(i));
+		layerfrom.outputs.emplace_back(step(layerfrom.inputs.at(i)));
 	}
 }
 
