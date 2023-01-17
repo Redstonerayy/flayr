@@ -8,6 +8,7 @@
 /**/*.pdf
 /**/*.gz
 /**/*.fdb_latexmk
+/**/*.dvi
 
 # exceptions for gz archives and pdf files
 
