@@ -3,7 +3,7 @@ import os
 import pathlib
 
 
-if __name__ == "__main__":
+def build():
     for (root,dirs,files) in os.walk('.', topdown=True):
         for file in files:
             if pathlib.Path(file).suffix == ".tex":

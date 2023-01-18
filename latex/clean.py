@@ -5,12 +5,13 @@ blacklisted = [
     ".aux",
     ".fls",
     ".log",
-    ".pdf",
+    # ".pdf",
     ".gz",
-    ".fdb_latexmk"
+    ".fdb_latexmk",
+    ".dvi"
 ]
 
-if __name__ == "__main__":
+def clean():
     for (root,dirs,files) in os.walk('.', topdown=True):
         for file in files:
             if pathlib.Path(file).suffix in blacklisted:

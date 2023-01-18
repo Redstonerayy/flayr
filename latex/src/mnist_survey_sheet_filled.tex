@@ -3,6 +3,7 @@
 \usepackage{tikz}
 \usepackage{geometry}
 \usepackage{multicol}
+\usepackage{xcolor}
 
 \usepackage[scaled]{helvet}
 \usepackage[T1]{fontenc}
@@ -52,10 +53,10 @@
         \node[anchor = center] () at (5.5,0.5){Z};
 
         % black square
-        \filldraw[fill=black, draw=black] (6,0) rectangle (7,1);
-        \filldraw[fill=black, draw=black] (7,0) rectangle (8,1);
-        \filldraw[fill=black, draw=black] (8,0) rectangle (9,1);
-        \filldraw[fill=black, draw=black] (9,0) rectangle (10,1);
+        \draw[gray, thin] (7, 0) -- (6,1);
+        \draw[gray, thin] (8, 0) -- (7, 1);
+        \draw[gray, thin] (9, 0) -- (8, 1);
+        \draw[gray, thin] (10, 0) -- (9, 1);
     \end{tikzpicture}
 
     \fontsize{12}{1}
@@ -90,10 +91,10 @@
         \node[anchor = center] () at (5.5,0.5){z};
 
         % black square
-        \filldraw[fill=black, draw=black] (6,0) rectangle (7,1);
-        \filldraw[fill=black, draw=black] (7,0) rectangle (8,1);
-        \filldraw[fill=black, draw=black] (8,0) rectangle (9,1);
-        \filldraw[fill=black, draw=black] (9,0) rectangle (10,1);
+        \draw[gray, thin] (7, 0) -- (6,1);
+        \draw[gray, thin] (8, 0) -- (7, 1);
+        \draw[gray, thin] (9, 0) -- (8, 1);
+        \draw[gray, thin] (10, 0) -- (9, 1);
     \end{tikzpicture}
 
 \end{multicols}
@@ -101,6 +102,7 @@
 
 \fontsize{14}{1.5}\textbf{Bitte Großbuchstaben in Schreibrichtung eintragen}
 
+\color{blue}
 \begin{tikzpicture}[thick, scale=1.4]
     \draw[step=1cm,gray,thin] (0,0) grid (10,3);
     % letters
@@ -131,15 +133,16 @@
     \node[anchor = center] () at (4.5,0.5){Y};
     \node[anchor = center] () at (5.5,0.5){Z};
 
-    % black square
-    \filldraw[fill=black, draw=black] (6,0) rectangle (7,1);
-    \filldraw[fill=black, draw=black] (7,0) rectangle (8,1);
-    \filldraw[fill=black, draw=black] (8,0) rectangle (9,1);
-    \filldraw[fill=black, draw=black] (9,0) rectangle (10,1); 
+    \draw[gray, thin] (7, 0) -- (6,1);
+    \draw[gray, thin] (8, 0) -- (7, 1);
+    \draw[gray, thin] (9, 0) -- (8, 1);
+    \draw[gray, thin] (10, 0) -- (9, 1);
 \end{tikzpicture}
+\color{black}
 
 \fontsize{14}{1.5}\textbf{Bitte Kleinbuchstaben in Schreibrichtung Eintragen}
 
+\color{blue}
 \begin{tikzpicture}[thick, scale=1.4]
     \draw[step=1cm,gray,thin] (0,0) grid (10,3);
     % letter
@@ -170,12 +173,13 @@
     \node[anchor = center] () at (4.5,0.5){y};
     \node[anchor = center] () at (5.5,0.5){z};
 
-    % black square
-    \filldraw[fill=black, draw=black] (6,0) rectangle (7,1);
-    \filldraw[fill=black, draw=black] (7,0) rectangle (8,1);
-    \filldraw[fill=black, draw=black] (8,0) rectangle (9,1);
-    \filldraw[fill=black, draw=black] (9,0) rectangle (10,1);
+    % lines
+    \draw[gray, thin] (7, 0) -- (6,1);
+    \draw[gray, thin] (8, 0) -- (7, 1);
+    \draw[gray, thin] (9, 0) -- (8, 1);
+    \draw[gray, thin] (10, 0) -- (9, 1);
 \end{tikzpicture}
+\color{black}
 
 \fontsize{14}{1.5}\textbf{Bitte in jede Reihe die Zahlen von 0 bis 9 eintragen }
 
@@ -193,6 +197,7 @@
     \node[anchor = center] () at (9.5,0.5){9};
 \end{tikzpicture}
 
+\color{blue}
 \begin{tikzpicture}[thick, scale=1.4]
     \draw[step=1cm,gray,thin] (0,0) grid (10,3);
     \node[anchor = center] () at (0.5,0.5){0};
@@ -228,5 +233,6 @@
     \node[anchor = center] () at (8.5,2.5){8};
     \node[anchor = center] () at (9.5,2.5){9};
 \end{tikzpicture}
+
 
 \end{document}
