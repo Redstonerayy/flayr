@@ -9,8 +9,12 @@
 /**/*.gz
 /**/*.fdb_latexmk
 /**/*.dvi
+/**/*.xdv
 
 # exceptions for gz archives and pdf files
 
 # vscode
 /.vscode
+
+# python
+**/__pycache__/**

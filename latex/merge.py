@@ -1,9 +1,10 @@
-from PyPDF2 import PdfFileMerger, PdfFileReader
+from PyPDF2 import PdfMerger, PdfReader
+
 
 def merge():
-	merger = PdfFileMerger()
+    merger = PdfMerger()
 
-	merger.append(PdfFileReader(open("mnist_survey_accompanying_sheet.pdf", 'rb')))
-	merger.append(PdfFileReader(open("mnist_survey_sheet_filled.pdf", 'rb')))
+    merger.append(PdfReader(open("mnist_survey_accompanying_sheet.pdf", "rb")))
+    merger.append(PdfReader(open("mnist_survey_sheet_filled.pdf", "rb")))
 
-	merger.write("lehrer_document_survey.pdf")
+    merger.write("lehrer_document_survey.pdf")
