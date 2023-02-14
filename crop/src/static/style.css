@@ -10,15 +10,39 @@ html, body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: azure;
     flex-direction: column;
 }
 
+/* .canvas {
+    position: relative;
+    top: 200px;
+} */
+
 .wrapper {
-    width: 100%;
-	height: 100%;
+    overflow-y: scroll;
+    justify-content: center;
+    margin: 30px;
+    position: relative;
 }
 
-.main-img {
-    width: 100%;
+.img-canvas {
+}
+
+.draw-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.load-img {
+    margin: 30px;
+    width: 80px;
+    height: 30px;
+    border: 2px solid grey;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.load-img:hover {
+    border-color: black;
 }
