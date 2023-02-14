@@ -8,3 +8,6 @@ def merge():
     merger.append(PdfReader(open("mnist_survey_sheet_filled.pdf", "rb")))
 
     merger.write("lehrer_document_survey.pdf")
+
+if __name__ == "__main__":
+    merge()

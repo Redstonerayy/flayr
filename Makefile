@@ -9,3 +9,4 @@ run: build
 
 clean:
 	rm -rf ./build
+	python latex/clean.py
