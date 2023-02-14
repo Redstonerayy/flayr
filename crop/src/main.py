@@ -15,9 +15,8 @@ def getimage():
 
 @app.route("/crop-image", methods=["POST"])
 def cropimage():
-    print(request.json["filepath"])
-    print(request.json["dimensions"])
-
+    print(request.json[0])
+    return "success"
 
 # index file
 @app.route("/")

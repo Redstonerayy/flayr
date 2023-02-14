@@ -3,6 +3,10 @@ const imgcanvas = document.querySelector(".img-canvas");
 const imgctx = imgcanvas.getContext("2d");
 const drawcanvas = document.querySelector(".draw-canvas");
 const drawctx = drawcanvas.getContext("2d");
+const previewimgcontainer = document.querySelector(".preview-images");
+const cropbtn = document.querySelector(".confirm-button");
+
+let currentcropinfos = [];
 
 // creates a qr code from the value of the input field and shows it
 async function getImage(filepath) {
@@ -111,7 +115,14 @@ drawcanvas.addEventListener("mouseup", (ev) => {
         cropwidth: croppedwidth,
         cropheight: croppedheight,
     };
+    currentcropinfos.push(cropinfo);
     let dataurl = buffer.toDataURL();
+    // add to preview images
+    let previewimg = document.createElement("img");
+    previewimg.src = dataurl;
+    previewimgcontainer.appendChild(previewimg);
+    // clear old react
+    drawctx.clearRect(0, 0, drawcanvas.width, drawcanvas.height);
     // reset variables
     mousedown = false;
     startx = 0;
@@ -131,4 +142,25 @@ drawcanvas.addEventListener("mousemove", (ev) => {
         drawctx.rect(startx, starty, xpos - startx, ypos - starty);
         drawctx.stroke();
     }
+});
+
+cropbtn.addEventListener("click", async (ev) => {
+    // reset application
+    imgctx.clearRect(0, 0, imgcanvas.width, imgcanvas.height);
+    previewimgcontainer.innerHTML = "";
+    // send crop data
+    await fetch("/crop-image", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(currentcropinfos),
+    })
+        .then(async (res) => {
+            console.log(res);
+        })
+        // some error idk
+        .catch((res) => {
+            console.log(res);
+        });
 });
