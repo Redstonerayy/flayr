@@ -77,8 +77,42 @@ drawcanvas.addEventListener("mousedown", (ev) => {
 });
 
 drawcanvas.addEventListener("mouseup", (ev) => {
-    // console.log(ev);
-    // ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // get current position
+    const rect = imgcanvas.getBoundingClientRect();
+    let xpos = ev.clientX - rect.left;
+    let ypos = ev.clientY - rect.top;
+    // save cropped image
+    // create in memory canvas
+    let buffer = document.createElement("canvas");
+    let b_ctx = buffer.getContext("2d");
+    // set dimensions
+    let croppedwidth = Math.abs(xpos - startx);
+    let croppedheight = Math.abs(ypos - starty);
+    buffer.width = croppedwidth;
+    buffer.height = croppedheight;
+    // draw the main canvas on the buffer
+    b_ctx.drawImage(
+        imgcanvas,
+        startx,
+        starty,
+        croppedwidth,
+        croppedheight,
+        0,
+        0,
+        buffer.width,
+        buffer.height
+    );
+    // generate data url for preview
+    let cropinfo = {
+        width: drawcanvas.width,
+        height: drawcanvas.height,
+        startx: startx,
+        starty: starty,
+        cropwidth: croppedwidth,
+        cropheight: croppedheight,
+    };
+    let dataurl = buffer.toDataURL();
+    // reset variables
     mousedown = false;
     startx = 0;
     starty = 0;
