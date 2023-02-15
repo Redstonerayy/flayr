@@ -23,6 +23,7 @@ html, body {
     margin: 10px;
     position: relative;
     overflow-y: scroll;
+    border-radius: 5px;
 }
 
 .draw-canvas {
@@ -42,7 +43,7 @@ html, body {
     width: 300px;
 }
 
-.load-img {
+.confirm-button, .clear-button, .load-img {
     margin: 10px;
     width: 80px;
     height: 30px;
@@ -51,19 +52,6 @@ html, body {
     cursor: pointer;
 }
 
-.load-img:hover {
-    border-color: black;
-}
-
-.confirm-button {
-    margin: 10px;
-    width: 80px;
-    height: 30px;
-    border: 2px solid grey;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.confirm-button:hover {
+.confirm-button:hover, .clear-button:hover, .load-img:hover {
     border-color: black;
 }

@@ -5,6 +5,7 @@ const drawcanvas = document.querySelector(".draw-canvas");
 const drawctx = drawcanvas.getContext("2d");
 const previewimgcontainer = document.querySelector(".preview-images");
 const cropbtn = document.querySelector(".confirm-button");
+const clearbtn = document.querySelector(".clear-button");
 
 let currentcropinfos = [];
 
@@ -147,6 +148,7 @@ drawcanvas.addEventListener("mousemove", (ev) => {
 cropbtn.addEventListener("click", async (ev) => {
     // reset application
     imgctx.clearRect(0, 0, imgcanvas.width, imgcanvas.height);
+    // get next image
     previewimgcontainer.innerHTML = "";
     // send crop data
     await fetch("/crop-image", {
@@ -163,4 +165,12 @@ cropbtn.addEventListener("click", async (ev) => {
         .catch((res) => {
             console.log(res);
         });
+    // reset data
+    currentcropinfos = [];
+});
+
+clearbtn.addEventListener("click", async (ev) => {
+    previewimgcontainer.innerHTML = "";
+    // reset data
+    currentcropinfos = [];
 });
