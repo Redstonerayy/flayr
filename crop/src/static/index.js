@@ -6,8 +6,11 @@ const drawctx = drawcanvas.getContext("2d");
 const previewimgcontainer = document.querySelector(".preview-images");
 const cropbtn = document.querySelector(".confirm-button");
 const clearbtn = document.querySelector(".clear-button");
+const currvalue = document.querySelector(".imagepos");
 
 let currentcropinfos = [];
+let files;
+let index;
 
 // creates a qr code from the value of the input field and shows it
 async function getImage(filepath) {
@@ -39,9 +42,27 @@ async function getImage(filepath) {
     return imgbase64string;
 }
 
+const init = async () => {
+    // load files
+    await fetch("/get-files", {
+        method: "GET",
+    })
+        // get image data and convert to base64
+        .then(async (res) => {
+            let jsonres = await res.json();
+            console.log(jsonres);
+            files = jsonres;
+        })
+        // some error idk
+        .catch((res) => {
+            console.log(res);
+        });
+};
+
 btn.addEventListener("click", async (ev) => {
     // get image
-    let stringbase = await getImage("0.jpg");
+    index = Number(currvalue.value);
+    let stringbase = await getImage(files.folder + "/" + files.files[index]);
     let image = new Image();
     image.src = stringbase;
     // wait for image to load, else width and height are both 0
@@ -174,3 +195,41 @@ clearbtn.addEventListener("click", async (ev) => {
     // reset data
     currentcropinfos = [];
 });
+
+document.addEventListener("keydown", async (ev) => {
+    if (ev.key == "ArrowLeft") {
+        index--;
+    } else if (ev.key == "ArrowRight") {
+        index++;
+    }
+
+    // clear old react
+    drawctx.clearRect(0, 0, drawcanvas.width, drawcanvas.height);
+
+    let stringbase = await getImage(files.folder + "/" + files.files[index]);
+    let image = new Image();
+    image.src = stringbase;
+    // wait for image to load, else width and height are both 0
+    image.onload = () => {
+        // calculate aspect ratio
+        let aspect = image.width / image.height;
+        let height = imgcanvas.width / aspect;
+        // set canvas stuff
+        imgcanvas.height = height;
+        drawcanvas.height = height;
+        // draw image
+        imgctx.drawImage(
+            image,
+            0,
+            0,
+            image.width,
+            image.height,
+            0,
+            0,
+            imgcanvas.width,
+            imgcanvas.height
+        );
+    };
+});
+
+init();

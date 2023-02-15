@@ -43,6 +43,14 @@ html, body {
     width: 300px;
 }
 
+.imagepos {
+    border: 2px solid grey;
+    border-radius: 10px;
+    width: 60px;
+    height: 30px;
+    padding: 0px 10px;
+}
+
 .confirm-button, .clear-button, .load-img {
     margin: 10px;
     width: 80px;
