@@ -7,6 +7,7 @@ const previewimgcontainer = document.querySelector(".preview-images");
 const cropbtn = document.querySelector(".confirm-button");
 const clearbtn = document.querySelector(".clear-button");
 const currvalue = document.querySelector(".imagepos");
+const fileshow = document.querySelector(".cur-file");
 
 let currentcropinfos = [];
 let files;
@@ -63,6 +64,7 @@ btn.addEventListener("click", async (ev) => {
     // get image
     index = Number(currvalue.value);
     let stringbase = await getImage(files.folder + "/" + files.files[index]);
+    fileshow.textContent = files.files[index];
     let image = new Image();
     image.src = stringbase;
     // wait for image to load, else width and height are both 0
@@ -177,7 +179,10 @@ cropbtn.addEventListener("click", async (ev) => {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(currentcropinfos),
+        body: JSON.stringify({
+            infos: currentcropinfos,
+            filepath: files.folder + "/" + files.files[index],
+        }),
     })
         .then(async (res) => {
             console.log(res);
@@ -198,15 +203,20 @@ clearbtn.addEventListener("click", async (ev) => {
 
 document.addEventListener("keydown", async (ev) => {
     if (ev.key == "ArrowLeft") {
-        index--;
+        if (!(index - 1 < 0)) {
+            index--;
+        }
     } else if (ev.key == "ArrowRight") {
-        index++;
+        if (!(index + 1 > files.files.length - 1)) {
+            index++;
+        }
     }
 
     // clear old react
     drawctx.clearRect(0, 0, drawcanvas.width, drawcanvas.height);
 
     let stringbase = await getImage(files.folder + "/" + files.files[index]);
+    fileshow.textContent = files.files[index];
     let image = new Image();
     image.src = stringbase;
     // wait for image to load, else width and height are both 0

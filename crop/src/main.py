@@ -2,6 +2,7 @@
 
 from flask import Flask, send_file, request
 import os, sys
+from PIL import Image
 
 # flask app
 app = Flask(__name__)
@@ -30,7 +31,26 @@ def getfiles():
 
 @app.route("/crop-image", methods=["POST"])
 def cropimage():
-    print(request.json[0])
+    print(request.json)
+    # crop image in python
+    sourcefile = request.json["filepath"]
+    outpath = destfolder + "/" + os.path.basename(sourcefile).split(".")[0]
+    if not os.path.exists(outpath):
+        os.makedirs(outpath)
+    # crop each image
+    original = Image.open(sourcefile)
+    for i, crop in enumerate(request.json["infos"]):
+        newimg = original.crop(
+            (
+                original.size[0] * crop["startx"] / crop["width"],
+                original.size[1] * crop["starty"] / crop["height"],
+                original.size[0] * (crop["startx"] + crop["cropwidth"]) / crop["width"],
+                original.size[1]
+                * (crop["starty"] + crop["cropheight"])
+                / crop["height"],
+            )
+        )
+        newimg.save(os.path.join(outpath, f"{i}-crop.png"))
 
     return ["success"]
 
