@@ -1,4 +1,5 @@
 from PIL import Image
+import os
 
 img = Image.open("0/0-crop.png")
 
@@ -9,9 +10,10 @@ for i in range(3):
     for j in range(26):
         imgparts.append(
             img.crop(
-                j * twentysixthwidth, i * thirdheight, twentysixthwidth, thirdheight
+                (j * twentysixthwidth, i * thirdheight, twentysixthwidth, thirdheight)
             )
         )
 
-for imgpart in imgparts:
-    imgpart.save()
+os.makedirs("0/0-parts")
+for i, imgpart in enumerate(imgparts):
+    imgpart.save(f"0/0-parts/{i}.png")
