@@ -7,22 +7,27 @@ from PIL import Image
 # flask app
 app = Flask(__name__)
 
+# folders
 sourcefolder = sys.argv[1]
-# create dest folder
 destfolder = sys.argv[2]
+# create dest folder
 if not os.path.exists(destfolder):
     os.makedirs(destfolder)
 
 
 @app.route("/get-image", methods=["POST"])
 def getimage():
-    return send_file(request.json["filepath"], mimetype="image/jpg")
+    try:
+        return send_file(
+            os.path.join(os.getcwd(), request.json["filepath"]), mimetype="image/jpg"
+        )
+    except:
+        return {}, 500
 
 
 @app.route("/get-files", methods=["GET"])
 def getfiles():
     files = os.listdir(sourcefolder)
-    print(files)
     files = [
         file for file in files if file.split(".")[-1] in ["jpg", "jpeg", "png", "webp"]
     ]

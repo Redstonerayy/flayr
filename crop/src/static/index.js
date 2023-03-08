@@ -10,7 +10,7 @@ const currvalue = document.querySelector(".imagepos");
 const fileshow = document.querySelector(".cur-file");
 
 let currentcropinfos = [];
-let files;
+let files = undefined;
 let index;
 
 // creates a qr code from the value of the input field and shows it
@@ -51,7 +51,6 @@ const init = async () => {
         // get image data and convert to base64
         .then(async (res) => {
             let jsonres = await res.json();
-            console.log(jsonres);
             files = jsonres;
         })
         // some error idk
@@ -95,7 +94,6 @@ let startx = 0;
 let starty = 0;
 
 drawcanvas.addEventListener("mousedown", (ev) => {
-    // console.log(ev);
     mousedown = true;
     // clientx is not the position, where the canvas was clicked
     // it's the overall position. this calculates the real position
